@@ -5,8 +5,8 @@ let env = {
 	DBPROTOCOL: 'mongodb',
 	DBUSERNAME: 'kaleb',
 	DBPASSWORD: 'kaleb',
-	DBHOST: 'ds135552.mlab.com:35552',
-	DBNAME: 'keepr',
+	DBHOST: 'backend-shard-00-00-fntlb.mongodb.net:27017,backend-shard-00-01-fntlb.mongodb.net:27017,backend-shard-00-02-fntlb.mongodb.net:27017/test?ssl=true&replicaSet=backend-shard-0&authSource=admin',
+	DBNAME: 'backend',
 	SERVERNAME: 'dev-server'
 }
 
