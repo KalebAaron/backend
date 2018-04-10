@@ -4,7 +4,7 @@ let ObjectId = mongoose.Schema.ObjectId
 
 var schema = new mongoose.Schema({
   name: { type: String, required: true },
-  keeps: [{type: ObjectId, ref: models.keep.name}],
+  posts: [{type: ObjectId, ref: models.keep.name}],
   created: { type: Number, default: Date.now() },
   creatorId: {type: ObjectId, ref: models.user.name},
 });

@@ -8,8 +8,9 @@ var schema = new mongoose.Schema({
   imgUrl: {type: String},
   created: { type: Number, default: Date.now() },
   creatorId: {type: ObjectId, ref: models.user.name},
-  vaultIds: { type: Array, default: [] },
-  keepCount: { type: Number, default: 0},
+  collectionIds: { type: Array, default: [] },
+  collectionUserIds: { type: Array, default: [] },
+  postCount: { type: Number, default: 0},
   shareCount: { type: Number, default: 0},
   viewCount: { type: Number, default: 0},
   keptBy: { type: Array, default: [] },
@@ -17,4 +18,4 @@ var schema = new mongoose.Schema({
   public: {type: Boolean, default: true}
 });
 
-module.exports = mongoose.model(models.keep.name, schema);
+module.exports = mongoose.model(models.post.name, schema);

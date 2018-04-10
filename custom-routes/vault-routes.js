@@ -17,18 +17,18 @@ export default {
         })
     }
   },
-  addKeepToVault: {
-    path: '/addKeepToVault/:vaultId',
+  addPostToVault: {
+    path: '/addPostToVault/:vaultId',
     reqType: 'put',
     method(req, res, next) {
       //debugger
-      let action = 'Add keep to Vault'
+      let action = 'Add post to Vault'
       Vault.findById(req.params.vaultId).then(vault => {
         //debugger
         if (!vault) {
           res.sendStatus(404)({ error: "Vault Not Found" })
         } else {
-          vault.keeps.push(req.body)
+          vault.posts.push(req.body)
           vault.save().then(() => {
             res.send(handleResponse(action, vault))
           })
@@ -40,48 +40,26 @@ export default {
     }
   },
 
-  incrementPoints: {
-    path: '/incrementpoints/:keepId',
-    reqType: 'put',
-    method(req, res, next) {
-      //debugger
-      let action = 'increment keep points'
-      Keep.findById(req.params.keepId).then(keep => {
-        //debugger
-        if (!vault) {
-          res.sendStatus(404)({ error: "Vault Not Found" })
-        } else {
-          keep.keepCount += 1;
-          keep.save().then(() => {
-            res.send(handleResponse(action, keep))
-          })
-            .catch(error => {
-              return next(handleResponse(action, null, error))
-            })
-        }
-      })
-    }
-  },
 
-  getVaultKeeps: {
-    path: '/getVaultKeeps/:vaultId',
+  getVaultPosts: {
+    path: '/getVaultPosts/:vaultId',
     reqType: 'get',
     method(req, res, next) {
       //debugger
-      let action = 'Get keeps by VaultId'
+      let action = 'Get posts by VaultId'
       Vault.findById(req.params.vaultId)
         .then(vault => {
           //debugger
-          var vaultKeeps = []
-          for (var i = 0; i < vault.keeps.length; i++) {
+          var vaultPosts = []
+          for (var i = 0; i < vault.posts.length; i++) {
             //debugger
-            var keepId = vault.keeps[i];
-            Keep.findById(keepId).then(keep => {
+            var postId = vault.posts[i];
+            Post.findById(postId).then(post => {
               //debugger
-              vaultKeeps.push(keep)
+              vaultPosts.push(post)
             }).then(() => {
               //debugger
-              res.send(handleResponse(action, vaultKeeps))
+              res.send(handleResponse(action, vaultPosts))
             }).catch(error => {
               return next(handleResponse(action, null, error))
             })
